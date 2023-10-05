@@ -1,1 +1,1 @@
-# WdPAI-Projekt
+# WdPAI

@@ -23,6 +23,27 @@
         </div>
         <div class="body">
             <div class="body-selector">
+                    
+                <div class="selector">
+                    <div class="selector-header">
+                        Race
+                    </div>
+                    <div class="selector-body">
+                        <div class="selector-object selected" ondblclick="selectorOnDoubleClick(this)"> Human </div>
+                        <div class="selector-object hidden" ondblclick="selectorOnDoubleClick(this)"> Elf </div>
+                    </div>
+                </div>
+
+                <div class="selector">
+                    <div class="selector-header">
+                        Subrace
+                    </div>
+                    <div class="selector-body">
+                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Human Variant </div>
+                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Gavony Human </div>
+                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Keldon Human </div>
+                    </div>
+                </div>
 
             </div>
             <div class="body-information">
@@ -30,6 +51,7 @@
             </div>
         </div>
     </div>
-    <script src="../js/tab-main.js"></script>
+    <script src="../js/tab.js"></script>
+    <script src="../js/selector.js"></script>
 </body>
 </html>

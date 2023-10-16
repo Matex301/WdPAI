@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../css/pure.css" rel="stylesheet">
+    <title>D&D Character Creator</title>
+    <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <p1 class="header">Character Creator</p1>
+            <div class="logo">
+                <img src="../img/logo.svg">
+            </div>
+            <div class="nav-tab">
+                <button class="nav-button active" id="nav-button-login" onclick="openTab('login')">Login</button>
+                <button class="nav-button" id="nav-button-register" onclick="openTab('register')">Register</button>
+            </div>
+            <div class="tab-container">
+                <div class="tab fate active" id="tab-login">
+                    <form>
+                        <input name="username" type="text" placeholder="Username">
+                        <input name="password" type="password" placeholder="Password">
+                        <button>Sign in</button>
+                    </form>
+                </div>
+                <div class="tab fate" id="tab-register">
+                    <form>
+                        <input name="username" type="text" placeholder="Username">
+                        <input name="email" type="email" placeholder="Email">
+                        <input name="password" type="password" placeholder="Password">
+                        <input name="password" type="password" placeholder="Repeat Password">
+                        <button>Sign in</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/tab-main.js"></script>
+</body>
+</html>

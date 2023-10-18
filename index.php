@@ -1,3 +1,8 @@
 <?php
 
-echo 'Hi there 👋';
+require "router.php";
+
+Router::get('/start', 'StartController');
+Router::get('/main', 'MainController');
+
+Router::run();

@@ -21,7 +21,7 @@ body {
 
 .title {
     height: 60%;
-    font-size: 2.5em;
+    font-size: 2.8em;
     font-weight: 700;
     margin-left: 1%;
 
@@ -44,7 +44,7 @@ body {
 
 .nav-tab > button {
     background: #E0E2DB;
-    font-size: 180%;
+    font-size: 1.8em;
     border-radius: 10px;
     padding-left: 1%;
     padding-right: 1%;
@@ -131,6 +131,19 @@ body {
 }
 
 @media only screen and (max-device-width: 810px) {
+
+    .title {
+        font-size: 2em;
+    }
+
+    .nav-tab > button {
+        font-size: 1.5em;
+        padding: 0.5%;
+        padding-left: 1%;
+        padding-right: 1%;
+        margin-left: 1%;
+    }
+
     .body {
         flex-direction: column;
         align-items: center;

@@ -93,11 +93,6 @@ form > input::placeholder {
     text-align: center;
 }
 
-.tab {
-    display: block;
-    margin-bottom: 5%;
-}
-
 .tab:not(.active) {
     display: none;
 }

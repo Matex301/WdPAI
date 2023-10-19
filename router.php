@@ -13,6 +13,8 @@ class Router {
         $request_url = rtrim($request_url, '/');
         $request_url = strtok($request_url, '?');
 
+        $request_method = $_SERVER['REQUEST_METHOD'];
+
         $request_url_parts = explode('/', $request_url);
         array_shift($request_url_parts);
 

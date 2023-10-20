@@ -2,24 +2,27 @@
 
 class Router {
 
-    public static function get($route, $controller)
-    {
+    public static function get($route, $controller) {
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             self::route($route, $controller);
         }
     }
 
-    public static function post($route, $controller)
-    {
+    public static function post($route, $controller) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             self::route($route, $controller);
         }
     }
 
-    private static function callController($controller) {
+    public static function any() {
+        self::callController('LostController');
+    }
+
+    private static function callController($controller, array $parameters = []) {
         include_once ('src/controllers/' . $controller . '.php');
-        $object = new $controller;
+        $object = new $controller($parameters);
         $object->call();
+        exit();
     }
 
 
@@ -48,13 +51,13 @@ class Router {
             $route_part = $route_parts[$i];
             if (preg_match("/^[$]/", $route_part)) {
                 $route_part = ltrim($route_part, '$');
-                array_push($parameters, $request_url_parts[$i]);
-                $$route_part = $request_url_parts[$i];
+                $parameters[$route_part] = $request_url_parts[$i];
             } else if ($route_parts[$i] != $request_url_parts[$i]) {
                 return;
             }
         }
-
-        self::callController($controller);
+        
+        self::callController($controller, $parameters);
+        exit();
     }
 }

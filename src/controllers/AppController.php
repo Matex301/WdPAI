@@ -5,7 +5,7 @@ abstract class AppController {
     protected $routeData;
 
     public function __construct(array $parameters = []) {
-        $this->$routeData = $parameters;
+        $this->routeData = $parameters;
     }
 
     protected function render(string $template, array $variables = []){

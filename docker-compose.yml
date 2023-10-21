@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - .:/app/
     links:
@@ -18,3 +18,19 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "admin"
+      POSTGRES_DB: "wdpai"
+    ports:
+      - "5432:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"

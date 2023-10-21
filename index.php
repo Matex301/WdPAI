@@ -9,4 +9,7 @@ Router::get('/main/$id', 'MainController');
 
 Router::post('/login', 'LoginController');
 
+Router::post('/races', 'RacesController');
+Router::post('/subraces/$id', 'SubracesController');
+
 Router::any();

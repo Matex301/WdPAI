@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/public/css/main.css" rel="stylesheet">
+    <link href="/public/css/tab.css" rel="stylesheet">
     <title>DnD Character Creator</title>
     <link rel="icon" type="image/x-icon" href="/public/img/favicon.ico">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <p1 class="title">
+            <div class="title">
                 D&D Character Creator
-            </p1>
+            </div>
             <div class="nav-tab">
                 <button class="nav-button active" id="nav-button-race" onclick="openTab('race')">Race</button>
                 <button class="nav-button" id="nav-button-class" onclick="openTab('class')">Class</button>
@@ -24,24 +25,21 @@
         <div class="body tab active" id="tab-race">
             <div class="body-selector">
                     
-                <div class="selector">
+                <div class="selector" data-type="races">
                     <div class="selector-header">
                         Race
                     </div>
                     <div class="selector-body">
-                        <div class="selector-object selected" ondblclick="selectorOnDoubleClick(this)"> Human </div>
-                        <div class="selector-object hidden" ondblclick="selectorOnDoubleClick(this)"> Elf </div>
+
                     </div>
                 </div>
 
-                <div class="selector">
+                <div class="selector" data-type="subraces">
                     <div class="selector-header">
                         Subrace
                     </div>
                     <div class="selector-body">
-                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Human Variant </div>
-                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Gavony Human </div>
-                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Keldon Human </div>
+
                     </div>
                 </div>
 
@@ -73,5 +71,6 @@
     </div>
     <script src="/public/js/tab.js"></script>
     <script src="/public/js/selector.js"></script>
+    <script src="/public/js/selector-race.js"></script>
 </body>
 </html>

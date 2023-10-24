@@ -93,10 +93,6 @@ form > input::placeholder {
     text-align: center;
 }
 
-.tab:not(.active) {
-    display: none;
-}
-
 @media only screen and (max-device-width: 810px) {
     .main {
         width: 90%;

@@ -30,7 +30,7 @@ function selectorOnClick(element) {
 
     let id = element.dataset.id;
     let json = _SELECTORS[type].json;
-    console.log(json);
+
     let data;
     for(let i = 0; i < json.length; i++){
         if(json[i].id == id){

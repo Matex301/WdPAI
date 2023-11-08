@@ -1,7 +1,7 @@
 <?php
-require_once "appController.php";
+require_once "SessionController.php";
 
-class MainController extends AppController {
+class MainController extends SessionController {
 
     public function call(){
         $this->render('main');

@@ -1,5 +1,5 @@
 <?php
-require_once "appController.php";
+require_once "AppController.php";
 require_once __DIR__ . '/../repository/UserRepository.php';
 
 class LoginController extends AppController {
@@ -13,13 +13,17 @@ class LoginController extends AppController {
         $user = $userRepository->getUserByUsername($username);
 
         if(!$user) {
-            die(); //TODO
+            die(); //TODO handler
         }
 
-        if($user->getPassword() != $password){
-            die(); //TODO
+        $hash = $user->getPassword();
+
+        if(!hash_equals(crypt($password, $hash), $hash)){
+            die(); //TODO handler
         }
 
+        session_start();
+        $_SESSION['ID'] = $user->getId();
 
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/main");

@@ -1,5 +1,5 @@
 <?php
-require_once "appController.php";
+require_once "AppController.php";
 
 class LostController extends AppController {
 

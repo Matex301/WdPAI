@@ -6,6 +6,11 @@ class LoginController extends AppController {
 
     public function call(){
 
+        if(!(isset($_POST['username']) && isset($_POST['password']))){
+            $this->render("start");
+            exit();
+        }
+
         $username = $_POST['username'];
         $password = $_POST['password'];
 
@@ -13,13 +18,15 @@ class LoginController extends AppController {
         $user = $userRepository->getUserByUsername($username);
 
         if(!$user) {
-            die(); //TODO handler
+            $this->render("start", ['message' => "Invalid username"]);
+            exit();
         }
 
         $hash = $user->getPassword();
 
         if(!hash_equals(crypt($password, $hash), $hash)){
-            die(); //TODO handler
+            $this->render("start", ['message' => "Invalid password"]);
+            exit();
         }
 
         session_start();

@@ -20,6 +20,13 @@
                 <button class="nav-button active" id="nav-button-login" onclick="openTab('login')">Login</button>
                 <button class="nav-button" id="nav-button-register" onclick="openTab('register')">Register</button>
             </div>
+            <?php
+                if(isset($message)) {
+                    echo '<div class="message">';
+                    echo $message;
+                    echo '</div>';
+                }
+            ?>
             <div class="tab-container">
                 <div class="tab active" id="tab-login">
                     <form action="/login" method="post">

@@ -2,7 +2,7 @@
 
 DROP TABLE IF EXISTS "races";
 DROP SEQUENCE IF EXISTS races_id_seq;
-CREATE SEQUENCE races_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE races_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 5 CACHE 1;
 
 CREATE TABLE "public"."races" (
     "id" integer DEFAULT nextval('races_id_seq') NOT NULL,
@@ -12,6 +12,7 @@ CREATE TABLE "public"."races" (
     CONSTRAINT "rases_pkey" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+TRUNCATE "races";
 INSERT INTO "races" ("id", "name", "speed", "subrace") VALUES
 (1,	'Human',	30,	NULL),
 (2,	'Human (Variant)',	30,	1),
@@ -31,6 +32,7 @@ CREATE TABLE "public"."racesEntry" (
     CONSTRAINT "racesEntry_pk" PRIMARY KEY ("id")
 ) WITH (oids = false);
 
+TRUNCATE "racesEntry";
 INSERT INTO "racesEntry" ("id", "race", "name", "description") VALUES
 (1,	1,	'Age',	'Humans reach adulthood in their late teens and live less than a century.'),
 (2,	1,	'Size',	'Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.'),
@@ -71,21 +73,24 @@ Starting at 3rd level, you also gain resistance to all damage when you teleport 
 
 DROP TABLE IF EXISTS "users";
 DROP SEQUENCE IF EXISTS users_id_seq;
-CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1;
+CREATE SEQUENCE users_id_seq INCREMENT 1 MINVALUE 1 MAXVALUE 2147483647 START 4 CACHE 1;
 
 CREATE TABLE "public"."users" (
     "id" integer DEFAULT nextval('users_id_seq') NOT NULL,
     "username" character varying(50) NOT NULL,
-    "password" character varying(50) NOT NULL,
+    "password" character varying(106) NOT NULL,
+    "email" character varying(50) NOT NULL,
+    CONSTRAINT "users_email_pk" UNIQUE ("email"),
     CONSTRAINT "users_pkey" PRIMARY KEY ("id"),
     CONSTRAINT "users_username_key" UNIQUE ("username")
 ) WITH (oids = false);
 
-INSERT INTO "users" ("id", "username", "password") VALUES
-(1,	'Matex301',	'password');
+TRUNCATE "users";
+INSERT INTO "users" ("id", "username", "password", "email") VALUES
+(4,	'Matex301',	'$6$h6bRPrOCcKF/tnah$Ki2L1i8ygPF2yK/5kfaxhidFuoqKx1x4KXcpRVxUfqSZsuaSNLuREaG.OeTMeM.5yRXURnoFb.IIVh6cbwuVM0',	'mateks301@interia.pl');
 
 ALTER TABLE ONLY "public"."races" ADD CONSTRAINT "races_fk" FOREIGN KEY (subrace) REFERENCES races(id) NOT DEFERRABLE;
 
 ALTER TABLE ONLY "public"."racesEntry" ADD CONSTRAINT "racesEntry_fk" FOREIGN KEY (race) REFERENCES races(id) NOT DEFERRABLE;
 
--- 2023-10-24 14:38:04.393026+00
+-- 2023-11-09 00:00:53.492796+00

@@ -17,30 +17,37 @@
                 <img src="/public/img/logo.svg">
             </div>
             <div class="nav-tab">
-                <button class="nav-button active" id="nav-button-login" onclick="openTab('login')">Login</button>
+                <button class="nav-button" id="nav-button-login" onclick="openTab('login')">Login</button>
                 <button class="nav-button" id="nav-button-register" onclick="openTab('register')">Register</button>
             </div>
-            <?php
-                if(isset($message)) {
-                    echo '<div class="message">';
-                    echo $message;
-                    echo '</div>';
-                }
-            ?>
             <div class="tab-container">
-                <div class="tab active" id="tab-login">
-                    <form action="/login" method="post">
+                <div class="tab" id="tab-login">
+                    <?php
+                    if(isset($loginMessage)) {
+                        echo '<div class="message">';
+                        echo $loginMessage;
+                        echo '</div>';
+                    }
+                    ?>
+                    <form name="login" action="/login" method="post">
                         <input name="username" type="text" placeholder="Username" required>
                         <input name="password" type="password" placeholder="Password" required>
                         <button type="submit">Sign in</button>
                     </form>
                 </div>
                 <div class="tab" id="tab-register">
-                    <form action="/register" method="post">
+                    <?php
+                    if(isset($registerMessage)) {
+                        echo '<div class="message">';
+                        echo $registerMessage;
+                        echo '</div>';
+                    }
+                    ?>
+                    <form name="register" action="/register" onsubmit="return validateRegister()" method="post">
                         <input name="username" type="text" placeholder="Username" required>
                         <input name="email" type="email" placeholder="Email" required>
                         <input name="password" type="password" placeholder="Password" required>
-                        <input name="rep-password" type="password" placeholder="Repeat Password" required>
+                        <input name="confirmPassword" type="password" placeholder="Repeat Password" required>
                         <button type="submit">Sign in</button>
                     </form>
                 </div>
@@ -48,5 +55,14 @@
         </div>
     </div>
     <script src="/public/js/tab.js"></script>
+    <script src="/public/js/start-validation.js"></script>
+
+    <?php
+        if(isset($registerMessage)) {
+            echo '<script>openTab("register")</script>';
+        } else {
+            echo '<script>openTab("login")</script>';
+        }
+    ?>
 </body>
 </html>

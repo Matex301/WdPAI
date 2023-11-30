@@ -18,14 +18,14 @@ class LoginController extends AppController {
         $user = $userRepository->getUserByUsername($username);
 
         if(!$user) {
-            $this->render("start", ['message' => "Invalid username"]);
+            $this->render("start", ['$loginMessage' => "Invalid username"]);
             exit();
         }
 
         $hash = $user->getPassword();
 
         if(!hash_equals(crypt($password, $hash), $hash)){
-            $this->render("start", ['message' => "Invalid password"]);
+            $this->render("start", ['$loginMessage' => "Invalid password"]);
             exit();
         }
 

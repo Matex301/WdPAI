@@ -1,3 +1,13 @@
+class RacesSelector extends Selector {
+    selected() {
+        SelectorCollapseReload(this);
+    }
+
+    deselected() {
+        SelectorCollapseReload(this);
+    }
+}
+
 class SubracesSelector extends Selector {
     async reload() {
         let selector = document.querySelector("[data-type=\"" + this.type + "\"]");
@@ -14,8 +24,6 @@ class SubracesSelector extends Selector {
     }
 }
 
-let races = new Selector('races');
+let races = new RacesSelector('races');
 let subraces = new SubracesSelector('subraces');
 races.add(subraces);
-
-SelectorCollapseReload(races);

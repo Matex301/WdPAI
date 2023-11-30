@@ -2,6 +2,7 @@
 function selectorOnDoubleClick(element){
     let body = element.parentElement;
     let selectors = body.getElementsByClassName('selector-object');
+    let type = element.parentElement.parentElement.dataset.type;
 
     if(element.classList.contains('selected')){
         element.classList.remove('selected');
@@ -11,6 +12,8 @@ function selectorOnDoubleClick(element){
             selector.classList.remove('hidden');
 
         }
+        console.log("Deselected " + type);
+        _SELECTORS[type].deselected();
 
     } else {
         for(let i = 0; i < selectors.length; i++){
@@ -21,6 +24,8 @@ function selectorOnDoubleClick(element){
         element.classList.remove('hidden');
         element.classList.add('selected');
 
+        console.log("Selected " + type);
+        _SELECTORS[type].selected();
     }
 }
 
@@ -133,6 +138,14 @@ class Selector extends Hierarchy{
         let body = selector.getElementsByClassName('selector-body').item(0);
 
         body.innerHTML = "";
+    }
+
+    selected() {
+
+    }
+
+    deselected() {
+
     }
 }
 

@@ -7,7 +7,7 @@ class RacesController extends AppController
     {
 
         $racesRepository = new RacesRepository();
-        $races = $racesRepository->getAllAndDesciption();
+        $races = $racesRepository->getAllAndDescription();
 
         for($i = 0; $i < sizeof($races); $i++){
             $races[$i]['entries'] = json_decode($races[$i]['entries']);

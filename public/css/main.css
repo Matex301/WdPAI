@@ -143,6 +143,17 @@ body {
     padding: 3%;
 }
 
+.entry-level {
+    float: right;
+    padding-right: 5%;
+}
+
+.entry-header {
+    padding: 3%;
+    font-weight: bolder;
+    font-size: 1.5em;
+}
+
 .entry-name {
     font-weight: 700;
     font-size: 1em;
@@ -150,7 +161,8 @@ body {
 }
 
 .entry-description {
-
+    padding-bottom: 5%;
+    white-space: pre-line;
 }
 
 @media only screen and (max-device-width: 810px) {

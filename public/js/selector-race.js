@@ -27,3 +27,5 @@ class SubracesSelector extends Selector {
 let races = new RacesSelector('races');
 let subraces = new SubracesSelector('subraces');
 races.add(subraces);
+
+SelectorCollapseReload(races);

@@ -15,7 +15,7 @@ class SubracesRepository extends Repository {
                 SELECT r.id, r.name, 
                        json_agg(json_build_object(\'name\', rE.name, \'description\', rE.description)) as entries
                 FROM races r
-                         LEFT JOIN public."racesEntry" rE on r.id = rE.race
+                         LEFT JOIN public."racesEntries" rE on r.id = rE.race
                 WHERE r.subrace = :id
                 GROUP BY r.id
         ');

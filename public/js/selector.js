@@ -12,7 +12,6 @@ function selectorOnDoubleClick(element){
             selector.classList.remove('hidden');
 
         }
-        console.log("Deselected " + type);
         _SELECTORS[type].deselected();
 
     } else {
@@ -24,7 +23,6 @@ function selectorOnDoubleClick(element){
         element.classList.remove('hidden');
         element.classList.add('selected');
 
-        console.log("Selected " + type);
         _SELECTORS[type].selected();
     }
 }
@@ -33,26 +31,10 @@ function selectorOnClick(element) {
     let infoBody = element.parentElement.parentElement.parentElement.parentElement.getElementsByClassName('body-information').item(0);
     let type = element.parentElement.parentElement.dataset.type;
 
-    let id = element.dataset.id;
-    let json = _SELECTORS[type].json;
+    let id = parseInt(element.dataset.id);
+    let selector = _SELECTORS[type];
 
-    let data;
-    for(let i = 0; i < json.length; i++){
-        if(json[i].id == id){
-            data = json[i].entries;
-            break;
-        }
-    }
-
-    let result = "";
-    for(let i = 0; i < data.length; i++) {
-        result += "<div class='entry'>";
-        result += "<div class='entry-name'> " + data[i].name + " </div>";
-        result += "<div class='entry-description'> " + data[i].description + " </div>";
-        result += "</div>";
-    }
-
-    infoBody.innerHTML = result;
+    infoBody.innerHTML = selector.renderInfo(id);
 }
 
 class Hierarchy {
@@ -110,16 +92,7 @@ class Selector extends Hierarchy{
 
         this.json = json;
 
-        let result = "";
-        for (let i = 0; i < json.length; i++) {
-            let data = json[i];
-            let id = data.id;
-            let name = data.name;
-
-            result += "<div class=\"selector-object\" data-id=\"" + id + "\" ondblclick=\"selectorOnDoubleClick(this)\" onclick=\"selectorOnClick(this)\"> " + name + " </div>" + "\n";
-        }
-
-        return result;
+        return this.render();
     }
 
     async reload() {
@@ -146,6 +119,41 @@ class Selector extends Hierarchy{
 
     deselected() {
 
+    }
+    render() {
+        let result = "";
+        for (let i = 0; i < this.json.length; i++) {
+            let data = this.json[i];
+            let id = data.id;
+            let name = data.name;
+
+            result += "<div class=\"selector-object\" data-id=\"" + id + "\" ondblclick=\"selectorOnDoubleClick(this)\" onclick=\"selectorOnClick(this)\"> " + name + " </div>" + "\n";
+        }
+        return result;
+    }
+
+    renderInfo(id) {
+        let data;
+        for(let i = 0; i < this.json.length; i++){
+            if(this.json[i].id === id){
+                data = this.json[i];
+                break;
+            }
+        }
+
+        let result = "";
+
+        result += "<div class='entry-header'>"
+        result += data.name;
+        result += "</div>";
+
+        for(let i = 0; i < data.entries.length; i++) {
+            result += "<div class='entry'>";
+            result += "<div class='entry-name'> " + data.entries[i].name + " </div>";
+            result += "<div class='entry-description'> " + data.entries[i].description + " </div>";
+            result += "</div>";
+        }
+        return result;
     }
 }
 

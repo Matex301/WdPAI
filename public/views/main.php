@@ -19,7 +19,7 @@
                 <button class="nav-button active" id="nav-button-race" onclick="openTab('race')">Race</button>
                 <button class="nav-button" id="nav-button-class" onclick="openTab('class')">Class</button>
                 <button class="nav-button" id="nav-button-ability-score" onclick="">Ability Score</button>
-                <button class="nav-button" id="nav-button-background" onclick="">Background</button>
+                <button class="nav-button" id="nav-button-background" onclick="openTab('background')">Background</button>
             </div>
         </div>
         <div class="body tab active" id="tab-race">
@@ -52,13 +52,30 @@
         <div class="body tab" id="tab-class">
             <div class="body-selector">
                     
-                <div class="selector">
+                <div class="selector" data-type="classes">
                     <div class="selector-header">
                         Class
                     </div>
                     <div class="selector-body">
-                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Wizard </div>
-                        <div class="selector-object" ondblclick="selectorOnDoubleClick(this)"> Warlock </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="body-information">
+
+            </div>
+        </div>
+
+        <div class="body tab" id="tab-background">
+            <div class="body-selector">
+
+                <div class="selector" data-type="backgrounds">
+                    <div class="selector-header">
+                        Background
+                    </div>
+                    <div class="selector-body">
+
                     </div>
                 </div>
 
@@ -72,5 +89,7 @@
     <script src="/public/js/tab.js"></script>
     <script src="/public/js/selector.js"></script>
     <script src="/public/js/selector-race.js"></script>
+    <script src="/public/js/selector-class.js"></script>
+    <script src="/public/js/selector-background.js"></script>
 </body>
 </html>

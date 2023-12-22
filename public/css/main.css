@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: "Verdana", sans-serif;
 }
 
 .container {
@@ -101,10 +102,9 @@ body {
 .selector {
     width: 80%;
     background-color: #B8BDB5;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); 
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     padding: 1%;
-    margin: 1%;
-    margin-top: 5%;
+    margin: 5% 1% 1%;
 
     font-size: 1.5em;
 }
@@ -123,7 +123,7 @@ body {
     background: #E0E2DB;
     padding: 0.7%;
     margin-bottom: 5px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
@@ -136,7 +136,7 @@ body {
 
 .selector-object.selected {
     display: block;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
 }
 
 .entry {
@@ -161,8 +161,55 @@ body {
 }
 
 .entry-description {
-    padding-bottom: 5%;
+    padding-bottom: 3%;
     white-space: pre-line;
+}
+
+.hidden {
+    display: none;
+}
+
+.score-container {
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+
+    align-items: center;
+}
+
+.score {
+    width: 60%;
+    height: 60%;
+
+    background-color: #5F7470;
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score label {
+    text-align: center;
+    font-size: 2em;
+}
+
+.score input {
+    width: 50%;
+    font-size: 4rem;
+    text-align: center;
+    border-radius: 10% / 50%;
+    margin: 5%;
+}
+
+.score div {
+
 }
 
 @media only screen and (max-device-width: 810px) {
@@ -173,15 +220,14 @@ body {
 
     .nav-tab > button {
         font-size: 1.5em;
-        padding: 0.5%;
-        padding-left: 1%;
-        padding-right: 1%;
+        padding: 0.5% 1%;
         margin-left: 1%;
     }
 
     .body {
         flex-direction: column;
         align-items: center;
+        height: 85%;
     }
 
     .body-selector {
@@ -190,7 +236,20 @@ body {
     }
 
     .body-information {
-        width: 100%;
+        width: 98%;
+        margin: 0;
+    }
+
+    .score-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-gap: 5%;
+        overflow-y: scroll;
+    }
+
+    .score {
+        width: 60%;
+        height: 100%;
     }
 
     ::-webkit-scrollbar {

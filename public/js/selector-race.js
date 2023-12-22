@@ -16,11 +16,13 @@ class SubracesSelector extends Selector {
         let id = _SELECTORS['races'].getValue();
         if(id == null) {
             body.innerHTML = "";
+            selector.classList.add('hidden');
             return;
         }
 
         const address = "http://localhost/subraces/" + id;
         body.innerHTML = await this.load(address);
+        selector.classList.remove('hidden');
     }
 }
 

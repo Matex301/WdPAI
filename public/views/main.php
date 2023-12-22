@@ -18,7 +18,7 @@
             <div class="nav-tab">
                 <button class="nav-button active" id="nav-button-race" onclick="openTab('race')">Race</button>
                 <button class="nav-button" id="nav-button-class" onclick="openTab('class')">Class</button>
-                <button class="nav-button" id="nav-button-ability-score" onclick="">Ability Score</button>
+                <button class="nav-button" id="nav-button-ability-score" onclick="openTab('ability-score')">Ability Score</button>
                 <button class="nav-button" id="nav-button-background" onclick="openTab('background')">Background</button>
             </div>
         </div>
@@ -64,6 +64,38 @@
             </div>
             <div class="body-information">
 
+            </div>
+        </div>
+
+        <div class="body tab" id="tab-ability-score">
+            <div class="body-selector score-container">
+                <div class="score">
+                    <label>Strength</label>
+                    <input placeholder="10">
+                </div>
+                <div class="score">
+                    <label>Dexterity</label>
+                    <input placeholder="10">
+                </div>
+                <div class="score">
+                    <label>Constitution</label>
+                    <input placeholder="10">
+                </div>
+                <div class="score">
+                    <label>Wisdom</label>
+                    <input placeholder="10">
+                </div>
+                <div class="score">
+                    <label>Intelligence</label>
+                    <input placeholder="10">
+                </div>
+                <div class="score">
+                    <label>Charisma</label>
+                    <input placeholder="10">
+                </div>
+            </div>
+            <div class="body-information">
+                <?php readfile(__DIR__ . '/embed/ability-scores.html'); ?>
             </div>
         </div>
 

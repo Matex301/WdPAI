@@ -1,8 +1,8 @@
 <?php
 require_once 'Repository.php';
 class SubracesRepository extends Repository {
-    public function getAllByRace($id) {
-        $stmt = $this->database->prepare('
+    public static function getAllByRace($id) {
+        $stmt = self::$database->prepare('
             SELECT id, name, subrace FROM public.races WHERE subrace = :id
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
@@ -10,8 +10,8 @@ class SubracesRepository extends Repository {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllAndDescriptionByRace($id) {
-        $stmt = $this->database->prepare('
+    public static function getAllAndDescriptionByRace($id) {
+        $stmt = self::$database->prepare('
                 SELECT r.id, r.name, 
                        json_agg(json_build_object(\'name\', rE.name, \'description\', rE.description)) as entries
                 FROM races r

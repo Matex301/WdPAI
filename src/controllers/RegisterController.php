@@ -1,7 +1,7 @@
 <?php
-require_once "AppController.php";
+require_once "Controller.php";
 require_once __DIR__ . '/../repository/UserRepository.php';
-class RegisterController extends AppController
+class RegisterController extends Controller
 {
 
     public function call()
@@ -12,17 +12,17 @@ class RegisterController extends AppController
 
         //TODO isSet
         if(!isset($username) && !isset($email) && !isset($password)) {
-            $this->render("start", ['$registerMessage' => "Please fill all fields"]);
+            $this->render("start", ['registerMessage' => "Please fill all fields"]);
             exit();
         }
 
         if(UserRepository::isUsername($username)) {
-            $this->render("start", ['$registerMessage' => "Username taken"]);
+            $this->render("start", ['registerMessage' => "Username taken"]);
             exit();
         }
 
         if(UserRepository::isEmail($email)) {
-            $this->render("start", ['$registerMessage' => "Email already used"]);
+            $this->render("start", ['registerMessage' => "Email already used"]);
             exit();
         }
 
@@ -32,7 +32,6 @@ class RegisterController extends AppController
         UserRepository::addUser($username, $email, $hash);
         //TODO result handler
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/");
+        $this->redirect('');
     }
 }

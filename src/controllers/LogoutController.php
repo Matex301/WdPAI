@@ -7,7 +7,6 @@ class LogoutController extends SessionController
         session_destroy();
         session_abort();
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/start");
+        $this->redirect('');
     }
 }

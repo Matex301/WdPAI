@@ -1,8 +1,8 @@
 <?php
-require_once "AppController.php";
+require_once "Controller.php";
 require_once __DIR__ . '/../repository/UserRepository.php';
 
-class LoginController extends AppController {
+class LoginController extends Controller {
 
     public function call(){
 
@@ -14,25 +14,23 @@ class LoginController extends AppController {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $userRepository = new UserRepository();
-        $user = $userRepository->getUserByUsername($username);
+        $user = UserRepository::getUserByUsername($username);
 
         if(!$user) {
-            $this->render("start", ['$loginMessage' => "Invalid username"]);
+            $this->render("start", ['loginMessage' => "Invalid username"]);
             exit();
         }
 
         $hash = $user->getPassword();
 
         if(!hash_equals(crypt($password, $hash), $hash)){
-            $this->render("start", ['$loginMessage' => "Invalid password"]);
+            $this->render("start", ['loginMessage' => "Invalid password"]);
             exit();
         }
 
         session_start();
         $_SESSION['ID'] = $user->getId();
 
-        $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/main");
+        $this->redirect('board');
     }
 }

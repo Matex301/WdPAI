@@ -3,8 +3,8 @@ include_once 'Repository.php';
 
 class BackgroundsRepository extends Repository
 {
-    public function getAll() {
-        $stmt = $this->database->prepare('
+    public static function getAll() {
+        $stmt = self::$database->prepare('
             SELECT id, name, bonuses FROM public.backgrounds
         ');
         $stmt->execute();
@@ -12,9 +12,9 @@ class BackgroundsRepository extends Repository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAllAndDescription() {
+    public static function getAllAndDescription() {
 
-        $stmt = $this->database->prepare('
+        $stmt = self::$database->prepare('
             SELECT b.id, b.name,
                    json_agg(json_build_object(\'name\', bE.name, \'description\', bE.description)) as entries
             FROM backgrounds b

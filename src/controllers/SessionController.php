@@ -1,7 +1,7 @@
 <?php
-require_once "AppController.php";
+require_once "Controller.php";
 
-abstract class SessionController extends AppController
+abstract class SessionController extends Controller
 {
     public function __construct(array $parameters = [])
     {
@@ -9,10 +9,12 @@ abstract class SessionController extends AppController
 
         session_start();
         if(!isset($_SESSION['ID'])){
-            $url = "http://$_SERVER[HTTP_HOST]";
-            header("Location: {$url}/");
-            exit(); //TODO
+            $this->redirect('');
         }
 
+    }
+
+    protected function getId() {
+        return $_SESSION['ID'];
     }
 }

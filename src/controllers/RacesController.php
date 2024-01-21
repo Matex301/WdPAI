@@ -1,13 +1,11 @@
 <?php
-require_once 'AppController.php';
+require_once 'Controller.php';
 require_once __DIR__ . '/../repository/RacesRepository.php';
-class RacesController extends AppController
+class RacesController extends Controller
 {
     public function call()
     {
-
-        $racesRepository = new RacesRepository();
-        $races = $racesRepository->getAllAndDescription();
+        $races = RacesRepository::getAllAndDescription();
 
         for($i = 0; $i < sizeof($races); $i++){
             $races[$i]['entries'] = json_decode($races[$i]['entries']);

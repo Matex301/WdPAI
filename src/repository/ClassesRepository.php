@@ -2,9 +2,9 @@
 include_once 'Repository.php';
 class ClassesRepository extends Repository
 {
-    public function getAllAndDescription() {
+    public static function getAllAndDescription() {
 
-        $stmt = $this->database->prepare('
+        $stmt = self::$database->prepare('
             WITH entriesTemp as (
                 SELECT fE.feature,
                     json_agg(json_build_object(\'name\', fE.name, \'description\', fE.description)) as entries

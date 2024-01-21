@@ -1,6 +1,6 @@
 <?php
 
-abstract class AppController {
+abstract class Controller {
     abstract public function call();
     protected $routeData;
 
@@ -20,5 +20,11 @@ abstract class AppController {
         }
 
         print $output;
+    }
+
+    protected function redirect(string $address) {
+        $url = "http://$_SERVER[HTTP_HOST]";
+        header("Location: {$url}/" . $address);
+        exit();
     }
 }

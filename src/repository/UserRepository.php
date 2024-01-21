@@ -4,8 +4,8 @@ require_once 'Repository.php';
 require_once __DIR__ . '/../models/User.php';
 class UserRepository extends Repository {
 
-    public function getUserByUsername(string $username) {
-        $stmt = $this->database->prepare('
+    public static function getUserByUsername(string $username) {
+        $stmt = self::$database->prepare('
             SELECT * FROM public.users WHERE username = :username
         ');
         $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -25,8 +25,7 @@ class UserRepository extends Repository {
     }
 
     public static function addUser($username, $email, $password){
-        $db = Database::get();
-        $stmt = $db->prepare('
+        $stmt = self::$database->prepare('
             INSERT INTO users (username, email, password)
             VALUES (?, ?, ?)
         ');
@@ -39,8 +38,7 @@ class UserRepository extends Repository {
     }
 
     public static function isUsername($username) {
-        $db = Database::get();
-        $stmt = $db->prepare('
+        $stmt = self::$database->prepare('
             SELECT exists(select 1 from users where username LIKE ?)
         ');
 
@@ -54,8 +52,7 @@ class UserRepository extends Repository {
     }
 
     public static function isEmail($email) {
-        $db = Database::get();
-        $stmt = $db->prepare('
+        $stmt = self::$database->prepare('
             SELECT exists(select 1 from users where email LIKE ?)
         ');
 

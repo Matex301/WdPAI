@@ -1,11 +1,11 @@
 <?php
-
 require_once 'Database.php';
 
 class Repository {
-    protected $database;
+    protected static $database;
 
-    public function __construct(){
-        $this->database = Database::get();
+    public static function setDatabase($db) {
+        Repository::$database = $db;
     }
 }
+Repository::setDatabase(Database::get());

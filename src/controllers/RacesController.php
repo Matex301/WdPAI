@@ -7,10 +7,6 @@ class RacesController extends Controller
     {
         $races = RacesRepository::getAllAndDescription();
 
-        for($i = 0; $i < sizeof($races); $i++){
-            $races[$i]['entries'] = json_decode($races[$i]['entries']);
-        }
-
         echo json_encode($races);
         exit();
     }

@@ -21,7 +21,11 @@ class ClassesRepository extends Repository
             GROUP BY c.id
         ');
         $stmt->execute();
+        $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        for($i = 0; $i < sizeof($classes); $i++){
+            $classes[$i]['features'] = json_decode($classes[$i]['features']);
+        }
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $classes;
     }
 }

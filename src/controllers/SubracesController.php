@@ -12,10 +12,6 @@ class SubracesController extends Controller
 
         $subraces = SubracesRepository::getAllAndDescriptionByRace($this->routeData['id']);
 
-        for($i = 0; $i < sizeof($subraces); $i++){
-            $subraces[$i]['entries'] = json_decode($subraces[$i]['entries']);
-        }
-
         die(json_encode($subraces));
     }
 }

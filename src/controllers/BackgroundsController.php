@@ -8,10 +8,6 @@ class BackgroundsController extends Controller
     {
         $backgrounds = BackgroundsRepository::getAllAndDescription();
 
-        for($i = 0; $i < sizeof($backgrounds); $i++){
-            $backgrounds[$i]['entries'] = json_decode($backgrounds[$i]['entries']);
-        }
-
         echo json_encode($backgrounds);
         exit();
     }

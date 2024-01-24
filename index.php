@@ -16,7 +16,10 @@ Router::post('/register', 'RegisterController');
 
 Router::post('/races', 'RacesController');
 Router::post('/subraces/$id', 'SubracesController');
+
 Router::post('/classes', 'ClassesController');
+Router::post('/subclasses/$id', 'SubclassesController');
+
 Router::post('/backgrounds', 'BackgroundsController');
 
 Router::any();

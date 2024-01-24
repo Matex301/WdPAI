@@ -23,7 +23,13 @@ class RacesRepository extends Repository {
         ');
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $races = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        for($i = 0; $i < sizeof($races); $i++){
+            $races[$i]['entries'] = json_decode($races[$i]['entries']);
+        }
+
+        return $races;
     }
 }
 

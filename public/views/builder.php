@@ -61,6 +61,15 @@
                     </div>
                 </div>
 
+                <div class="selector" data-type="subclasses">
+                    <div class="selector-header">
+                        Subrace
+                    </div>
+                    <div class="selector-body">
+
+                    </div>
+                </div>
+
             </div>
             <div class="body-information">
 

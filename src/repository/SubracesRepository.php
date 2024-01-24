@@ -21,6 +21,13 @@ class SubracesRepository extends Repository {
         ');
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $subraces = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        for($i = 0; $i < sizeof($subraces); $i++){
+            $subraces[$i]['entries'] = json_decode($subraces[$i]['entries']);
+        }
+
+        return $subraces;
     }
 }

@@ -23,6 +23,12 @@ class BackgroundsRepository extends Repository
         ');
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $backgrounds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        for($i = 0; $i < sizeof($backgrounds); $i++){
+            $backgrounds[$i]['entries'] = json_decode($backgrounds[$i]['entries']);
+        }
+
+        return $backgrounds;
     }
 }

@@ -26,7 +26,7 @@ Router::post('/subclasses/$id', 'SubclassesController');
 Router::post('/backgrounds', 'BackgroundsController');
 
 Router::get('/admin', 'AdminLoginController');
-Router::post('/admin', 'AdminLoginController');
+Router::post('/admin', 'AdminLoginPostController');
 
 Router::get('/panel', 'PanelController');
 Router::post('/panel', 'PanelPostController');

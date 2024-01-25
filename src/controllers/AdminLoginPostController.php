@@ -7,7 +7,7 @@ class AdminLoginPostController extends Controller
     public function call()
     {
         if(!(isset($_POST['username']) && isset($_POST['password']))){
-            $this->render("admin");
+            $this->render("admin", ['loginMessage' => "Invalid"]);
             exit();
         }
 
@@ -29,7 +29,7 @@ class AdminLoginPostController extends Controller
         }
 
         session_start();
-        $_SESSION['ADMIN'] = true;
+        $_SESSION['ADMIN'] = 1;
 
         $this->redirect('panel');
     }

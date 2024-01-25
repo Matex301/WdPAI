@@ -3,7 +3,7 @@ class Panel {
     constructor(id, name, className, level) {
         this.id = id;
         this.name = name;
-        this.className = className;
+        this.className = className || "None";
         this.level = level;
     }
 
@@ -16,8 +16,8 @@ class Panel {
         result +=         '<img src="/public/img/fighter-icon.svg">';
         result +=     '</div>';
         result +=     '<div class="text">';
-        result +=         '<p class="name">Nox Eternal</p>';
-        result +=         '<p class="class">Fighter</p>';
+        result +=         '<p class="name">' + this.name + '</p>';
+        result +=         '<p class="class">' + this.className + '</p>';
         result +=         '<p class="level">Level 20</p>';
         result +=     '</div>';
         result += '</div>';
@@ -42,7 +42,7 @@ function renderAddPanel() {
 }
 
 function onClickAdd() {
-    console.log('Add');
+    window.location.href = '/create';
 }
 
 async function loadPanels() {

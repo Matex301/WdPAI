@@ -6,8 +6,7 @@ class CharactersController extends SessionController
 
     public function call()
     {
-        $id = $_SESSION['ID'];
-        $character = CharactersRepository::getByOwner($id);
+        $character = CharactersRepository::getByOwner($this->getId());
         die(json_encode($character));
     }
 }

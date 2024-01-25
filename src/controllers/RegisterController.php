@@ -1,6 +1,6 @@
 <?php
 require_once "Controller.php";
-require_once __DIR__ . '/../repository/UserRepository.php';
+require_once __DIR__ . '/../repository/UsersRepository.php';
 class RegisterController extends Controller
 {
 
@@ -16,12 +16,12 @@ class RegisterController extends Controller
             exit();
         }
 
-        if(UserRepository::isUsername($username)) {
+        if(UsersRepository::isUsername($username)) {
             $this->render("start", ['registerMessage' => "Username taken"]);
             exit();
         }
 
-        if(UserRepository::isEmail($email)) {
+        if(UsersRepository::isEmail($email)) {
             $this->render("start", ['registerMessage' => "Email already used"]);
             exit();
         }
@@ -29,7 +29,7 @@ class RegisterController extends Controller
         $salt = base64_encode(random_bytes(12));
         $hash = crypt($password, '$6$'.$salt);
 
-        UserRepository::addUser($username, $email, $hash);
+        UsersRepository::createUser($username, $email, $hash);
         //TODO result handler
 
         $this->redirect('');

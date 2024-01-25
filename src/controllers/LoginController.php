@@ -1,6 +1,6 @@
 <?php
 require_once "Controller.php";
-require_once __DIR__ . '/../repository/UserRepository.php';
+require_once __DIR__ . '/../repository/UsersRepository.php';
 
 class LoginController extends Controller {
 
@@ -14,7 +14,7 @@ class LoginController extends Controller {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $user = UserRepository::getUserByUsername($username);
+        $user = UsersRepository::getUserByUsername($username);
 
         if(!$user) {
             $this->render("start", ['loginMessage' => "Invalid username"]);

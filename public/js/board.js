@@ -18,7 +18,7 @@ class Panel {
         result +=     '<div class="text">';
         result +=         '<p class="name">' + this.name + '</p>';
         result +=         '<p class="class">' + this.className + '</p>';
-        result +=         '<p class="level">Level 20</p>';
+        //result +=         '<p class="level">Level 20</p>';
         result +=     '</div>';
         result += '</div>';
 

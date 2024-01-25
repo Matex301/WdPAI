@@ -82,7 +82,7 @@ class CharactersRepository extends Repository
             LEFT JOIN races ON selections.race = races.id
             WHERE characters.id = :id
         ');
-        $stmt->bindParam(1, $id, PDO::PARAM_STR);
+        $stmt->bindParam('id', $id, PDO::PARAM_STR);
         $stmt->execute();
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -147,5 +147,80 @@ class CharactersRepository extends Repository
         $stmt->bindParam('race', $race, PDO::PARAM_STR);
         $stmt->bindParam('selected', $selected, PDO::PARAM_STR);
         $stmt->execute();
+    }
+
+    public static function getProficiencies($id) {
+        $stmt = self::$database->prepare('
+            WITH tempBonuses as (
+                SELECT bonuses
+                FROM characters
+                         INNER JOIN selections ON characters.id = selections.id
+                         LEFT JOIN backgrounds ON selections.background = backgrounds.id
+                WHERE characters.id = :id
+                UNION
+                SELECT bonuses
+                FROM characters
+                         INNER JOIN selections ON characters.id = selections.id
+                         LEFT JOIN races ON selections.race = races.id
+                WHERE characters.id = :id
+                UNION
+                SELECT bonuses
+                FROM characters
+                         INNER JOIN selections ON characters.id = selections.id
+                         LEFT JOIN classes ON selections.class = classes.id
+                WHERE characters.id = :id
+                UNION
+                SELECT features.bonuses
+                FROM characters
+                         INNER JOIN selections ON characters.id = selections.id
+                         LEFT JOIN classes ON selections.class = classes.id
+                         LEFT JOIN features ON classes.features = features.id
+                WHERE characters.id = :id
+                UNION
+                SELECT features.bonuses
+                FROM characters
+                         INNER JOIN selections ON characters.id = selections.id
+                         LEFT JOIN subclasses ON selections.subclass = subclasses.id
+                         LEFT JOIN features ON subclasses.features = features.id
+                WHERE characters.id = :id
+            )
+            
+            SELECT
+                json_agg(DISTINCT skills.name) as skills,
+                json_agg(DISTINCT armors.name) as armors,
+                json_agg(DISTINCT tools.name) as tools,
+                json_agg(DISTINCT languages.name) as languages,
+                json_agg(DISTINCT saves.name) as saves
+            FROM tempBonuses
+                     LEFT JOIN bonuses_skills ON tempBonuses.bonuses = bonuses_skills.bonuses
+                     LEFT JOIN skills ON bonuses_skills.skills = skills.id
+            
+                     LEFT JOIN bonuses_armors ON tempBonuses.bonuses = bonuses_armors.bonuses
+                     LEFT JOIN armors ON bonuses_armors.armors = armors.id
+            
+                     LEFT JOIN bonuses_tools ON tempBonuses.bonuses = bonuses_tools.bonuses
+                     LEFT JOIN tools ON bonuses_tools.tools = tools.id
+            
+                     LEFT JOIN bonuses_languages ON tempBonuses.bonuses = bonuses_languages.bonuses
+                     LEFT JOIN languages ON bonuses_languages.languages = languages.id
+            
+                     LEFT JOIN bonuses_saves ON tempBonuses.bonuses = bonuses_saves.bonuses
+                     LEFT JOIN saves ON bonuses_saves.saves = saves.id;
+        ');
+        $stmt->bindParam('id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if(!$data) {
+            return null;
+        }
+
+        $data['skills'] = json_decode($data['skills']);
+        $data['armors'] = json_decode($data['armors']);
+        $data['tools'] = json_decode($data['tools']);
+        $data['saves'] = json_decode($data['saves']);
+
+        return $data;
     }
 }

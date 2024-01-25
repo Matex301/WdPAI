@@ -1,7 +1,7 @@
 function saveData() {
     let data = {};
     data.id = /[^/]*$/.exec(window.location)[0];
-    data.name = characterData.name; //TODO
+    data.name = document.getElementById('name-input').value;
     data.stats = score.getStats();
 
     if(subraces.getValue())

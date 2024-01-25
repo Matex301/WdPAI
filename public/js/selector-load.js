@@ -51,6 +51,9 @@ async function loadData() {
 
     if (characterData.background)
         backgrounds.setValue(characterData.background);
+
+    if(characterData.name)
+        document.getElementById('name-input').value = characterData.name;
 }
 
 function executeLoad() {

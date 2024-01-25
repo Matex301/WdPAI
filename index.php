@@ -11,6 +11,7 @@ Router::get('/create', 'CreateCharactersController');
 Router::get('/builder/$id', 'BuilderController');
 Router::post('/builder/$id', 'CharacterPostController');
 Router::put('/builder/$id', 'CharacterPutController');
+Router::post('/builder/prof/$id', 'BuilderProficienciesController');
 
 Router::post('/login', 'LoginController');
 Router::get('/logout', 'LogoutController'); //TO CHANGE

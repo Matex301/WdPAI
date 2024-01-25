@@ -5,6 +5,7 @@
 - [Tech Stack](#tech-stack)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Accounts](#test-accounts)
 - [Screenshots](#screenshots)
 - [ER Diagram](#er-diagram)
 
@@ -21,6 +22,9 @@ Admin has ability to remove users accounts from app.
 - HTML
 - CSS
 - JavaScript
+
+## Requirements
+- [Docker](https://www.docker.com/)
 
 ## Installation
 - Run `docker compose up` command in main project folder

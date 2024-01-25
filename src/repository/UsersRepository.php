@@ -75,4 +75,31 @@ class UsersRepository extends Repository {
 
         return $result['exists'];
     }
+
+    public static function getAll() {
+        $stmt = self::$database->prepare('
+            SELECT
+                users.id,
+                users.username,
+                users.email,
+                count(characters.id)
+            FROM users
+            LEFT JOIN characters on users.id = characters.owner
+            GROUP BY users.id
+        ');
+        $stmt->execute();
+
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $users;
+    }
+
+    public static function delete($id) {
+        $stmt = self::$database->prepare('
+            DELETE FROM users
+            WHERE id = :id;
+        ');
+        $stmt->bindParam('id', $id, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

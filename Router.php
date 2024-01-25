@@ -14,6 +14,18 @@ class Router {
         }
     }
 
+    public static function put($route, $controller) {
+        if ($_SERVER['REQUEST_METHOD'] == 'PUT') {
+            self::route($route, $controller);
+        }
+    }
+
+    public static function delete($route, $controller) {
+        if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            self::route($route, $controller);
+        }
+    }
+
     public static function any() {
         self::callController('LostController');
     }

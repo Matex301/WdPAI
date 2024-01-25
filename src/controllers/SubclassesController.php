@@ -8,7 +8,7 @@ class SubclassesController extends Controller
     public function call()
     {
         if(!isset($this->routeData['id'])) {
-            die('Wrong id');
+            die('Missing id');
         }
 
         $subclasses = SubclassesRepository::getAllByClass($this->routeData['id']);

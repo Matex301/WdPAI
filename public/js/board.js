@@ -13,7 +13,7 @@ class Panel {
 
         result += `<div class="panel" data-id="${this.id}" onclick="redirect(this)">`;
         result +=     '<div class="img">';
-        result +=         '<img src="/public/img/fighter-icon.svg">';
+        result +=         '<img src="/public/img/'+ this.imgs[this.className] + '">';
         result +=     '</div>';
         result +=     '<div class="text">';
         result +=         '<p class="name">' + this.name + '</p>';
@@ -24,7 +24,15 @@ class Panel {
 
         return result;
     }
+
+    imgs = {
+        "Wizard": "wizard-icon.svg",
+        "Fighter": "fighter-icon.svg"
+    }
+
 }
+
+
 
 function redirect(element) {
     let id = element.dataset.id;

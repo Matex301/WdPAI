@@ -83,6 +83,17 @@ class Selector extends Hierarchy{
         return selected.dataset.id;
     }
 
+    setValue(id) {
+        let selector = document.querySelector("[data-type=\"" + this.type + "\"]");
+        let selected = selector.querySelector('.selected');
+
+        if(selected)
+            selectorOnDoubleClick(selected);
+
+        let toSelected = selector.querySelector("[data-id=\"" + id + "\"]");
+        selectorOnDoubleClick(toSelected)
+    }
+
     async load(address) {
         const response = await fetch(address, {method: 'POST'});
         const json = await response.json();

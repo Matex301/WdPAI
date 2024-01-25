@@ -7,7 +7,7 @@ class SubracesController extends Controller
     public function call()
     {
         if(!isset($this->routeData['id'])) {
-            die('Wrong id');
+            die('Missing id');
         }
 
         $subraces = SubracesRepository::getAllAndDescriptionByRace($this->routeData['id']);

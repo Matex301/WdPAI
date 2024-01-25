@@ -10,10 +10,9 @@ class BuilderController extends SessionController
             die('Wrong id');
         }
 
-        $user = $_SESSION['ID'];
         $character = $this->routeData['id'];
 
-        $owner = CharactersRepository::checkIfOwner($character, $user);
+        $owner = CharactersRepository::checkIfOwner($character, $this->getId());
 
         if(!$owner['exists']) {
             $this->redirect('board');

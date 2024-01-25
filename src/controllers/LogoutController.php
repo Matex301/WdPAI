@@ -1,9 +1,10 @@
 <?php
-require_once "SessionController.php";
-class LogoutController extends SessionController
+require_once "Controller.php";
+class LogoutController extends Controller
 {
     public function call()
     {
+        session_start();
         session_destroy();
         session_abort();
 

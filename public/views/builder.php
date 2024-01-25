@@ -20,6 +20,7 @@
                 <button class="nav-button" id="nav-button-class" onclick="openTab('class')">Class</button>
                 <button class="nav-button" id="nav-button-ability-score" onclick="openTab('ability-score')">Ability Score</button>
                 <button class="nav-button" id="nav-button-background" onclick="openTab('background')">Background</button>
+                <button class="nav-button" id="nav-button-prof" onclick="openTab('prof')">Proficiencies</button>
                 <label for="name-input"></label><input class="name-input" id="name-input" placeholder="Name">
                 <button class="save-button" onclick="sendData()">Save</button>
                 <button class="logout-button" onclick="location.href='/logout'" >Logout</button>
@@ -126,6 +127,37 @@
             </div>
             <div class="body-information">
 
+            </div>
+        </div>
+
+        <div class="body tab" id="tab-prof">
+            <div class="body-selector">
+                <div class="prof-body">
+                    <div>Skills: </div>
+                    <div id="skill-val"></div>
+                </div>
+
+                <div class="prof-body">
+                    <div>Armors: </div>
+                    <div id="armors-val"></div>
+                </div>
+
+                <div class="prof-body">
+                    <div>Tools: </div>
+                    <div id="tools-val"></div>
+                </div>
+
+                <div class="prof-body">
+                    <div>Languages: </div>
+                    <div id="languages-val"></div>
+                </div>
+
+                <div class="prof-body">
+                    <div>Saves: </div>
+                    <div id="saves-val"></div>
+                </div>
+            </div>
+            <div class="body-information">
             </div>
         </div>
 

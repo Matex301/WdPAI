@@ -34,5 +34,5 @@ function sendData() {
         const message = response;
         console.log(message);
     });
-
+    downloadProf();
 }

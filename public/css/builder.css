@@ -230,6 +230,22 @@ body {
 
 }
 
+.prof-body {
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    margin: 1%;
+    border-radius: 15px;
+    background-color: #5F7470;
+}
+
+.prof-body > div:first-child {
+    margin-right: 5%;
+}
+
 @media only screen and (max-device-width: 810px) {
 
     .title {
